@@ -78,21 +78,6 @@ pipeline {
             echo "Deploying to ${ENVIRONMENT}"
             acsDeploy(
                azureCredentialsId: "jenkins_demo",
-               configFilePaths: "**/*.yaml",
-               containerService: "${ENVIRONMENT}-demo-cluster | AKS",
-               resourceGroupName: "${ENVIRONMENT}-demo",
-               sshCredentialsId: ""
-            )
-         }
-      }
-      stage('Approve PROD Deploy') {
-         when {
-            branch 'master'
-         }
-         options {
-            timeout(time: 1, unit: 'HOURS') 
-         }
-         steps {
             input message: "Deploy?"
          }
          post {
@@ -115,7 +100,7 @@ pipeline {
             echo "Deploying to ${ENVIRONMENT}"
             acsDeploy(
                azureCredentialsId: "jenkins_demo",
-               configFilePaths: "**/*.yaml",
+               configFilePaths: "**.yaml",
                containerService: "${ENVIRONMENT}-demo-cluster | AKS",
                resourceGroupName: "${ENVIRONMENT}-demo",
                sshCredentialsId: ""
