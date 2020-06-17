@@ -10,7 +10,7 @@ pipeline {
 
       stage('Docker Build') {
          steps {
-            docker images -a
+            sh label: '', script: 'docker images'
             /*
             pwsh(script: 'docker images -a')
             pwsh(script: """
